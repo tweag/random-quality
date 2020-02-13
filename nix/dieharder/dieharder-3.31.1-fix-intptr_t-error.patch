@@ -1,0 +1,12 @@
+diff --git a/include/dieharder/libdieharder.h b/include/dieharder/libdieharder.h
+index 2138ebf..690cf7e 100644
+--- a/include/dieharder/libdieharder.h
++++ b/include/dieharder/libdieharder.h
+@@ -19,6 +19,7 @@
+ #define __USE_MISC 1
+ #include <sys/types.h>
+ #include <sys/stat.h>
++#include <stdint.h>
+ #include <unistd.h>
+ 
+ /* This turns on M_PI in math.h */
