@@ -1,24 +1,29 @@
-let overlay = self: super:
-{
-  testu01 = self.callPackage ./nix/TestU01 { };
-  practrand = self.callPackage ./nix/PractRand { };
-  dieharder = self.callPackage ./nix/dieharder { };
-  generate = self.haskellPackages.callPackage ./generate { };
-};
+let
+  overlay = self: super:
+    {
+      dieharder = self.callPackage ./nix/dieharder {};
+      practrand = self.callPackage ./nix/PractRand {};
+      testu01 = self.callPackage ./nix/TestU01 {};
+
+      generate = self.haskellPackages.callPackage ./generate {};
+      testu01-stdin = self.callPackage ./testu01-stdin {};
+    };
 
 in
 
 { nixpkgs ? import <nixpkgs> { overlays = [ overlay ]; } }:
 
-nixpkgs.stdenv.mkDerivation {
-  name = "env";
-  buildInputs = [
-    nixpkgs.libiconv
-    nixpkgs.testu01
-    nixpkgs.practrand
-    nixpkgs.dieharder
-    nixpkgs.generate
-    nixpkgs.gcc
-  ];
-}
+  nixpkgs.stdenv.mkDerivation {
+    name = "env";
+    buildInputs = [
+      nixpkgs.dieharder
+      nixpkgs.practrand
+      nixpkgs.testu01
 
+      nixpkgs.generate
+      nixpkgs.testu01-stdin
+
+      # macOS
+      nixpkgs.libiconv
+    ];
+  }
