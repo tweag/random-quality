@@ -22,5 +22,8 @@ in
 
       nixpkgs.generate
       nixpkgs.testu01-stdin
+
+      # macOS
+      nixpkgs.libiconv
     ];
   }
