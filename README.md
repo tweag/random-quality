@@ -19,13 +19,20 @@ generator implementations.
 
 # Instructions
 
-  * Clone the repo
-
-  ``` shell
+* Clone the repo
+  ```shell
   git clone https://github.com/tweag/random-quality.git
   cd random-quality
   nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/19.09.tar.gz
-   ```
+  ```
+
+* Run a test
+  ```shell
+  generate random-word32-split | RNG_test stdin32
+  ```
+  This uses the `random` package to generate a sequence of random numbers using
+  `split`, and feeds them into `RNG_test`, which is PractRand's statistical
+  randomness test binary.
 
 # Acknowledgements
 
