@@ -1,6 +1,9 @@
-flags: {}
+flags:
+  splitmix:
+    random: false
 packages:
 - '.'
+- '/home/leo/Code/random'
 
 extra-deps: []
 resolver: lts-14.25
