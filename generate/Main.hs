@@ -4,7 +4,7 @@ module Main where
 
 import Control.Monad (forever)
 import Data.IORef (newIORef, readIORef, writeIORef)
-import Data.Word (Word32, Word64)
+import Data.Word (Word32)
 import System.Environment (getArgs)
 
 import qualified Data.ByteString.Builder as BS
@@ -19,9 +19,6 @@ import qualified System.Random.SplitMix as SM
 
 randomInt :: R.RandomGen g => g -> (Int, g)
 randomInt = R.random
-
-random64 :: R.RandomGen g => g -> (Word64, g)
-random64 = R.random
 
 random32 :: R.RandomGen g => g -> (Word32, g)
 random32 = R.random
@@ -50,10 +47,6 @@ defaultSequenceWord32 ::
      R.RandomGen g => (g -> (Word32, g)) -> g -> (BS.Builder, g)
 defaultSequenceWord32 = defaultSequence BS.word32Host
 
-defaultSequenceWord64 ::
-     R.RandomGen g => (g -> (Word64, g)) -> g -> (BS.Builder, g)
-defaultSequenceWord64 = defaultSequence BS.word64Host
-
 -------------------------------------------------------------------------------
 -- Sequences of random numbers that use 'split'
 -------------------------------------------------------------------------------
@@ -78,15 +71,6 @@ splitSequence prim f gPrev =
           (prim BS.>*< prim BS.>*< prim BS.>*< prim)
           (fromIntegral rLL, (fromIntegral rLR, (fromIntegral rRL, fromIntegral rRR)))
       , gNext)
-
-splitSequenceWord64 :: R.RandomGen g => (g -> (Word64, g)) -> g -> (BS.Builder, g)
-splitSequenceWord64 = splitSequence BS.word64Host
-
-splitSequenceWord32 :: R.RandomGen g => (g -> (Word32, g)) -> g -> (BS.Builder, g)
-splitSequenceWord32 = splitSequence BS.word32Host
-
-splitSequenceWordInt :: R.RandomGen g => (g -> (Int, g)) -> g -> (BS.Builder, g)
-splitSequenceWordInt = splitSequence BS.word32Host
 
 -- | 'splitSequenceSL', 'splitSequenceSR' and 'splitSequenceSA' generate
 -- sequences that stress-test splittable RNGs, suggested here:
@@ -142,7 +126,7 @@ main = do
     ["random-word32"] ->
       spew stdout (R.mkStdGen 1337) (defaultSequenceWord32 random32)
     ["random-word32-split"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceWord32 random32)
+      spew stdout (R.mkStdGen 1337) (splitSequence BS.word32Host random32)
     ["random-word32-splitsl"] ->
       spew stdout (R.mkStdGen 1337) (splitSequenceSL BS.word32Host random32)
     ["random-word32-splitsr"] ->
@@ -154,7 +138,7 @@ main = do
     ["splitmix-word32"] ->
       spew stdout (SM.mkSMGen 1337) (defaultSequenceWord32 SM.nextWord32)
     ["splitmix-word32-split"] ->
-      spew stdout (SM.mkSMGen 1337) (splitSequenceWord32 SM.nextWord32)
+      spew stdout (SM.mkSMGen 1337) (splitSequence BS.word32Host SM.nextWord32)
     ["splitmix-word32-splitsl"] ->
       spew stdout (SM.mkSMGen 1337) (splitSequenceSL BS.word32Host SM.nextWord32)
     ["splitmix-word32-splitsr"] ->
