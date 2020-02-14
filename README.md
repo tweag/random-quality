@@ -57,20 +57,18 @@ Generators using the [`random`][hackage-random] library:
 
 * `random-int`
 * `random-word32`
-* `random-word64`
-* `random-int-split`
 * `random-word32-split`
-* `random-word64-split`
-* `random-word64-splitsl`
-* `random-word64-splitsr`
-* `random-word64-splitsa`
+* `random-word32-splitsl`
+* `random-word32-splitsr`
+* `random-word32-splitsa`
 
 Generators using the [`splitmix`][hackage-splitmix] library:
 
 * `splitmix-word32`
 * `splitmix-word32-split`
-* `splitmix-word64`
-* `splitmix-word64-split`
+* `splitmix-word32-splitsl`
+* `splitmix-word32-splitsr`
+* `splitmix-word32-splitsa`
 
 # Tests
 
@@ -79,11 +77,11 @@ all of which accept a stream of random numbers on stdin:
 
 * [dieharder][]: run `dieharder -f stdin_input_raw -a` to execute all available
   tests (`-a`). See `dieharder -h` for more options.
-* [PractRand][]: run via `RNG_test stdin32` or `RNG_test stdin64` to test a
-  stream of 32-bit or 64-bit random numbers. See `RNG_test -help` for details.
-* [TestU01][]: run via `TestU01_stdin -[s|c|b]`. Note that TestU01 expects a
-  stream of 32-bit random numbers. Three test batteries are available: `-s`
-  starts SmallCrush, `-c` starts Crush, `-b` starts BigCrush.
+* [PractRand][]: run via `RNG_test stdin32` to test a stream of 32-bit random
+  numbers. See `RNG_test -help` for details.
+* [TestU01][]: run via `TestU01_stdin -[s|c|b]`, which expects a stream of
+  32-bit random numbers. Three test batteries are available: `-s` starts
+  SmallCrush, `-c` starts Crush, `-b` starts BigCrush.
 
 # Acknowledgements
 
