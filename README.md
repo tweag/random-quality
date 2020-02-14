@@ -19,13 +19,71 @@ generator implementations.
 
 # Instructions
 
-  * Clone the repo
-
-  ``` shell
+* Clone the repo
+  ```shell
   git clone https://github.com/tweag/random-quality.git
   cd random-quality
   nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/19.09.tar.gz
-   ```
+  ```
+
+* Run a test
+  ```shell
+  generate random-word32 | RNG_test stdin32
+  ```
+  This uses the `random` library to generate a sequence of random numbers, and
+  feeds them into `RNG_test`, which is PractRand's statistical randomness test
+  binary. See [Generators](#generators) and [Tests](#tests) for details.
+
+# Generators
+
+The `generate` binary takes a single argument which determines the sequence of
+random numbers that are written to stdout.
+
+The form of the argument is `LIBRARY-TYPE[-SEQUENCE]`.
+
+* `LIBRARY` is the Haskell library used,
+* `TYPE` is the output type of the random number generator, and
+* `SEQUENCE` is the sequence we use for generating the random number - we use
+  this for stress-testing [`split`][hackage-random-split].
+
+The test sequences (valid values for `SEQUENCE`) are:
+
+* `split`, as described in section 5.5 of [Evaluation of splittable
+  pseudo-random generators][doi-split-evaluation],
+* `splitsl`, `splitsr` and `splitsa`, as described in [Testing PRNGs for
+  High-Quality Randomness][peteroupc-random-test].
+
+Generators using the [`random`][hackage-random] library:
+
+* `random-int`
+* `random-word32`
+* `random-word64`
+* `random-int-split`
+* `random-word32-split`
+* `random-word64-split`
+* `random-word64-splitsl`
+* `random-word64-splitsr`
+* `random-word64-splitsa`
+
+Generators using the [`splitmix`][hackage-splitmix] library:
+
+* `splitmix-word32`
+* `splitmix-word32-split`
+* `splitmix-word64`
+* `splitmix-word64-split`
+
+# Tests
+
+The following randomness test suites are available in the repository via Nix,
+all of which accept a stream of random numbers on stdin:
+
+* [dieharder][]: run `dieharder -f stdin_input_raw -a` to execute all available
+  tests (`-a`). See `dieharder -h` for more options.
+* [PractRand][]: run via `RNG_test stdin32` or `RNG_test stdin64` to test a
+  stream of 32-bit or 64-bit random numbers. See `RNG_test -help` for details.
+* [TestU01][]: run via `TestU01_stdin -[s|c|b]`. Note that TestU01 expects a
+  stream of 32-bit random numbers. Three test batteries are available: `-s`
+  starts SmallCrush, `-c` starts Crush, `-b` starts BigCrush.
 
 # Acknowledgements
 
@@ -34,9 +92,17 @@ method for testing generators that support
 [split](https://hackage.haskell.org/package/random-1.1/docs/System-Random.html#v:split)
 method:
 
-  * [Testing PRNGs for High-Quality Randomness](https://github.com/peteroupc/peteroupc.github.io/blob/master/randomtest.md#testing-prngs-for-high-quality-randomness)
-  * [Evaluation of splittable pseudo-random generators](https://www.cambridge.org/core/journals/journal-of-functional-programming/article/evaluation-of-splittable-pseudorandom-generators/3EBAA9F14939C5BB5560E32D1A132637)
+  * [Testing PRNGs for High-Quality Randomness][peteroupc-random-test]
+  * [Evaluation of splittable pseudo-random generators][doi-split-evaluation]
 
 # random-quality
 Framework for testing quality of random number generators
 
+[doi-split-evaluation]: https://doi.org/10.1017/S095679681500012X
+[hackage-random]: https://hackage.haskell.org/package/random
+[hackage-random-split]: https://hackage.haskell.org/package/random-1.1/docs/System-Random.html#v:split
+[hackage-splitmix]: https://hackage.haskell.org/package/splitmix
+[peteroupc-random-test]: https://github.com/peteroupc/peteroupc.github.io/blob/master/randomtest.md#testing-prngs-for-high-quality-randomness
+[testu01]: http://simul.iro.umontreal.ca/testu01/tu01.html
+[dieharder]: http://webhome.phy.duke.edu/~rgb/General/dieharder.php
+[practrand]: http://pracrand.sourceforge.net/
