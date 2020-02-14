@@ -49,13 +49,18 @@ defaultSequenceWord32 = defaultSequence BS.word32Host
 
 -------------------------------------------------------------------------------
 -- Sequences of random numbers that use 'split'
--------------------------------------------------------------------------------
-
--- | Generate a sequence for stress-testing splittable RNGs.
+--
+-- The functions in this section implement sequences defined in sections 5.5
+-- and 5.6 of the following paper:
 --
 -- Hans Georg Schaathun. 2015. Evaluation of splittable pseudo-random
 -- generators. Journal of Functional Programming, Vol. 25.
 -- https://doi.org/10.1017/S095679681500012X
+-------------------------------------------------------------------------------
+
+-- | Generate a sequence ("sequence S") for stress-testing splittable RNGs.
+--
+-- Implements sequence S in Schaathun 2015, section 5.5.
 splitSequence ::
      (R.RandomGen g, Integral i, Integral j) => BS.FixedPrim i -> (g -> (j, g)) -> g -> (BS.Builder, g)
 splitSequence prim f gPrev =
@@ -72,31 +77,37 @@ splitSequence prim f gPrev =
           (fromIntegral rLL, (fromIntegral rLR, (fromIntegral rRL, fromIntegral rRR)))
       , gNext)
 
--- | 'splitSequenceSL', 'splitSequenceSR' and 'splitSequenceSA' generate
--- sequences that stress-test splittable RNGs, suggested here:
--- https://github.com/peteroupc/peteroupc.github.io/blob/master/randomtest.md
-splitSequenceSL ::
+-- | Generate a sequence ("sequence S_A") for stress-testing splittable RNGs.
+--
+-- Implements sequence S_A in Schaathun 2015, section 5.6.
+splitSequenceA ::
      (R.RandomGen g, Integral i, Integral j) => BS.FixedPrim i -> (g -> (j, g)) -> g -> (BS.Builder, g)
-splitSequenceSL prim f gPrev =
-  let (gL, gR) = R.split gPrev
-      (vR, _) = f gR
-   in (BS.primFixed BS.word32Host (fromIntegral vR), gL)
-
-splitSequenceSR ::
-     (R.RandomGen g, Integral i, Integral j) => BS.FixedPrim i -> (g -> (j, g)) -> g -> (BS.Builder, g)
-splitSequenceSR prim f gPrev =
-  let (gL, gR) = R.split gPrev
-      (vL, _) = f gL
-   in (BS.primFixed prim (fromIntegral vL), gR)
-
-splitSequenceSA ::
-     (R.RandomGen g, Integral i, Integral j) => BS.FixedPrim i -> (g -> (j, g)) -> g -> (BS.Builder, g)
-splitSequenceSA prim f gPrev =
+splitSequenceA prim f gPrev =
   let (gL, gR) = R.split gPrev
       (vR, _) = f gR
       (gLL, gLR) = R.split gL
       (vLL, _) = f gLL
    in (BS.primFixed (prim BS.>*< prim) (fromIntegral vR, fromIntegral vLL), gLR)
+
+-- | Generate a sequence ("sequence S_L") for stress-testing splittable RNGs.
+--
+-- Implements sequence S_L in Schaathun 2015, section 5.6.
+splitSequenceL ::
+     (R.RandomGen g, Integral i, Integral j) => BS.FixedPrim i -> (g -> (j, g)) -> g -> (BS.Builder, g)
+splitSequenceL prim f gPrev =
+  let (gL, gR) = R.split gPrev
+      (vL, _) = f gL
+   in (BS.primFixed BS.word32Host (fromIntegral vL), gR)
+
+-- | Generate a sequence ("sequence S_R") for stress-testing splittable RNGs.
+--
+-- Implements sequence S_R in Schaathun 2015, section 5.6.
+splitSequenceR ::
+     (R.RandomGen g, Integral i, Integral j) => BS.FixedPrim i -> (g -> (j, g)) -> g -> (BS.Builder, g)
+splitSequenceR prim f gPrev =
+  let (gL, gR) = R.split gPrev
+      (vR, _) = f gR
+   in (BS.primFixed prim (fromIntegral vR), gL)
 
 -------------------------------------------------------------------------------
 -- Output
@@ -127,21 +138,21 @@ main = do
       spew stdout (R.mkStdGen 1337) (defaultSequenceWord32 random32)
     ["random-word32-split"] ->
       spew stdout (R.mkStdGen 1337) (splitSequence BS.word32Host random32)
-    ["random-word32-splitsl"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceSL BS.word32Host random32)
-    ["random-word32-splitsr"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceSR BS.word32Host random32)
-    ["random-word32-splitsa"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceSA BS.word32Host random32)
+    ["random-word32-splita"] ->
+      spew stdout (R.mkStdGen 1337) (splitSequenceA BS.word32Host random32)
+    ["random-word32-splitl"] ->
+      spew stdout (R.mkStdGen 1337) (splitSequenceL BS.word32Host random32)
+    ["random-word32-splitr"] ->
+      spew stdout (R.mkStdGen 1337) (splitSequenceR BS.word32Host random32)
 
     -- splitmix
     ["splitmix-word32"] ->
       spew stdout (SM.mkSMGen 1337) (defaultSequenceWord32 SM.nextWord32)
     ["splitmix-word32-split"] ->
       spew stdout (SM.mkSMGen 1337) (splitSequence BS.word32Host SM.nextWord32)
-    ["splitmix-word32-splitsl"] ->
-      spew stdout (SM.mkSMGen 1337) (splitSequenceSL BS.word32Host SM.nextWord32)
-    ["splitmix-word32-splitsr"] ->
-      spew stdout (SM.mkSMGen 1337) (splitSequenceSR BS.word32Host SM.nextWord32)
-    ["splitmix-word32-splitsa"] ->
-      spew stdout (SM.mkSMGen 1337) (splitSequenceSA BS.word32Host SM.nextWord32)
+    ["splitmix-word32-splita"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceA BS.word32Host SM.nextWord32)
+    ["splitmix-word32-splitl"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceL BS.word32Host SM.nextWord32)
+    ["splitmix-word32-splitr"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceR BS.word32Host SM.nextWord32)
