@@ -7,6 +7,7 @@ particularly easy to install and use:
   * [dieharder](http://webhome.phy.duke.edu/~rgb/General/dieharder.php "venerable")
   * [TestU01 (SmallCrush, Crush, BigCrush)](http://simul.iro.umontreal.ca/testu01/tu01.html "venerable")
   * [PractRand](http://pracrand.sourceforge.net/ "active")
+  * [gjrand](http://gjrand.sourceforge.net/ "active")
 
 This repo provides a <kbd>nix-shell</kbd> which will build
 <kbd>dieharder</kbd>, <kbd>TestU01</kbd> and <kbd>PractRand</kbd> and
@@ -82,6 +83,8 @@ all of which accept a stream of random numbers on stdin:
 * [TestU01][]: run via `TestU01_stdin -[s|c|b]`, which expects a stream of
   32-bit random numbers. Three test batteries are available: `-s` starts
   SmallCrush, `-c` starts Crush, `-b` starts BigCrush.
+* [gjrand][]: run via `pmcp` to execute the standard test size (1 GB). See
+  `pmcp -h` for options.
 
 # Acknowledgements
 
@@ -98,6 +101,8 @@ method:
 [hackage-random-split]: https://hackage.haskell.org/package/random-1.1/docs/System-Random.html#v:split
 [hackage-splitmix]: https://hackage.haskell.org/package/splitmix
 [peteroupc-random-test]: https://github.com/peteroupc/peteroupc.github.io/blob/master/randomtest.md#testing-prngs-for-high-quality-randomness
-[testu01]: http://simul.iro.umontreal.ca/testu01/tu01.html
+
 [dieharder]: http://webhome.phy.duke.edu/~rgb/General/dieharder.php
+[gjrand]: http://gjrand.sourceforge.net/
 [practrand]: http://pracrand.sourceforge.net/
+[testu01]: http://simul.iro.umontreal.ca/testu01/tu01.html
