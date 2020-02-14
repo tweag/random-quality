@@ -1,0 +1,33 @@
++ git rev-parse HEAD
+782b6d95e02833084d03633ea11286e90542f734
++ generate random-word32-split
++ RNG_test stdin32 -tlmax 1GB
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0x53d2217e
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0x53d2217e
+length= 8 megabytes (2^23 bytes), time= 2.1 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BCFN(2+0,13-5,T)                  R=+159.4  p =  1.3e-62    FAIL !!!!      
+  BCFN(2+1,13-5,T)                  R= +72.7  p =  1.1e-28    FAIL !!!       
+  DC6-9x1Bytes-1                    R=+222.7  p =  1.6e-117   FAIL !!!!!     
+  [Low8/32]DC6-9x1Bytes-1           R= +72.5  p =  3.3e-42    FAIL !!!       
+  [Low1/32]BCFN(2+0,13-8,T)         R=  +9.5  p =  2.7e-3   unusual          
+  [Low1/32]DC6-9x1Bytes-1           R=+456.6  p =  4.2e-264   FAIL !!!!!!    
+  [Low1/32]Gap-16:A                 R=+323.9  p =  4.0e-259   FAIL !!!!!!    
+  [Low1/32]Gap-16:B                 R=+837.6  p =  6.1e-650   FAIL !!!!!!!   
+  [Low1/32]FPF-14+6/16:(0,14-5)     R= +1256  p =  4e-1041    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:(1,14-6)     R=+890.0  p =  4.2e-681   FAIL !!!!!!!   
+  [Low1/32]FPF-14+6/16:(2,14-7)     R=+201.8  p =  1.8e-160   FAIL !!!!!     
+  [Low1/32]FPF-14+6/16:(3,14-8)     R=+294.5  p =  5.9e-212   FAIL !!!!!!    
+  [Low1/32]FPF-14+6/16:(4,14-8)     R=+319.2  p =  9.0e-230   FAIL !!!!!!    
+  [Low1/32]FPF-14+6/16:(5,14-9)     R=+215.2  p =  8.9e-136   FAIL !!!!!     
+  [Low1/32]FPF-14+6/16:(6,14-10)    R= +46.0  p =  4.9e-25    FAIL !!        
+  [Low1/32]FPF-14+6/16:(7,14-11)    R= +75.8  p =  7.0e-34    FAIL !!!       
+  [Low1/32]FPF-14+6/16:(8,14-11)    R= +54.0  p =  2.2e-24    FAIL !!        
+  [Low1/32]FPF-14+6/16:all          R= +1776  p =  1e-1450    FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:all2         R=+666613 p = 0           FAIL !!!!!!!!  
+  [Low1/32]FPF-14+6/16:cross        R= +1575  p =  3e-1130    FAIL !!!!!!!!  
+  ...and 64 test result(s) without anomalies
+

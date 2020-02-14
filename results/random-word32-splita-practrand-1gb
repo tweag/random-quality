@@ -1,0 +1,43 @@
++ git rev-parse HEAD
+782b6d95e02833084d03633ea11286e90542f734
++ generate random-word32-splita
++ RNG_test stdin32 -tlmax 1GB
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0xf512eb15
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 8 megabytes (2^23 bytes), time= 2.5 seconds
+  no anomalies in 84 test result(s)
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 16 megabytes (2^24 bytes), time= 5.4 seconds
+  Test Name                         Raw       Processed     Evaluation
+  DC6-9x1Bytes-1                    R=  +5.6  p =  6.1e-3   unusual          
+  ...and 92 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 32 megabytes (2^25 bytes), time= 11.1 seconds
+  no anomalies in 100 test result(s)
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 64 megabytes (2^26 bytes), time= 21.0 seconds
+  no anomalies in 108 test result(s)
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 128 megabytes (2^27 bytes), time= 41.3 seconds
+  Test Name                         Raw       Processed     Evaluation
+  FPF-14+6/16:all                   R=  +4.4  p =  1.4e-3   unusual          
+  ...and 116 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 256 megabytes (2^28 bytes), time= 77.6 seconds
+  no anomalies in 124 test result(s)
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 512 megabytes (2^29 bytes), time= 155 seconds
+  no anomalies in 132 test result(s)
+
+rng=RNG_stdin32, seed=0xf512eb15
+length= 1 gigabyte (2^30 bytes), time= 300 seconds
+  no anomalies in 141 test result(s)
