@@ -95,9 +95,6 @@ method:
   * [Testing PRNGs for High-Quality Randomness][peteroupc-random-test]
   * [Evaluation of splittable pseudo-random generators][doi-split-evaluation]
 
-# random-quality
-Framework for testing quality of random number generators
-
 [doi-split-evaluation]: https://doi.org/10.1017/S095679681500012X
 [hackage-random]: https://hackage.haskell.org/package/random
 [hackage-random-split]: https://hackage.haskell.org/package/random-1.1/docs/System-Random.html#v:split
