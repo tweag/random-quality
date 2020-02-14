@@ -59,17 +59,17 @@ Generators using the [`random`][hackage-random] library:
 * `random-int`
 * `random-word32`
 * `random-word32-split`
-* `random-word32-splitsl`
-* `random-word32-splitsr`
-* `random-word32-splitsa`
+* `random-word32-splitl`
+* `random-word32-splitr`
+* `random-word32-splita`
 
 Generators using the [`splitmix`][hackage-splitmix] library:
 
 * `splitmix-word32`
 * `splitmix-word32-split`
-* `splitmix-word32-splitsl`
-* `splitmix-word32-splitsr`
-* `splitmix-word32-splitsa`
+* `splitmix-word32-splitl`
+* `splitmix-word32-splitr`
+* `splitmix-word32-splita`
 
 # Tests
 
