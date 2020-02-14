@@ -141,27 +141,23 @@ main = do
       spew stdout (R.mkStdGen 1337) (defaultSequenceInt randomInt)
     ["random-word32"] ->
       spew stdout (R.mkStdGen 1337) (defaultSequenceWord32 random32)
-    ["random-word64"] ->
-      spew stdout (R.mkStdGen 1337) (defaultSequenceWord64 random64)
-    ["random-int-split"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceWordInt randomInt)
     ["random-word32-split"] ->
       spew stdout (R.mkStdGen 1337) (splitSequenceWord32 random32)
-    ["random-word64-split"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequence BS.word64Host random64)
-    ["random-word64-splitsl"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceSL BS.word64Host random64)
-    ["random-word64-splitsr"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceSR BS.word64Host random64)
-    ["random-word64-splitsa"] ->
-      spew stdout (R.mkStdGen 1337) (splitSequenceSA BS.word64Host random64)
+    ["random-word32-splitsl"] ->
+      spew stdout (R.mkStdGen 1337) (splitSequenceSL BS.word32Host random32)
+    ["random-word32-splitsr"] ->
+      spew stdout (R.mkStdGen 1337) (splitSequenceSR BS.word32Host random32)
+    ["random-word32-splitsa"] ->
+      spew stdout (R.mkStdGen 1337) (splitSequenceSA BS.word32Host random32)
 
     -- splitmix
     ["splitmix-word32"] ->
       spew stdout (SM.mkSMGen 1337) (defaultSequenceWord32 SM.nextWord32)
     ["splitmix-word32-split"] ->
       spew stdout (SM.mkSMGen 1337) (splitSequenceWord32 SM.nextWord32)
-    ["splitmix-word64"] ->
-      spew stdout (SM.mkSMGen 1337) (defaultSequenceWord64 SM.nextWord64)
-    ["splitmix-word64-split"] ->
-      spew stdout (SM.mkSMGen 1337) (splitSequenceWord64 SM.nextWord64)
+    ["splitmix-word32-splitsl"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceSL BS.word32Host SM.nextWord32)
+    ["splitmix-word32-splitsr"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceSR BS.word32Host SM.nextWord32)
+    ["splitmix-word32-splitsa"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceSA BS.word32Host SM.nextWord32)
