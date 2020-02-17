@@ -1,0 +1,68 @@
+diff --git a/testfunif/src/mcpf.c b/testfunif/src/mcpf.c
+index 619e629..69082ee 100644
+--- a/testfunif/src/mcpf.c
++++ b/testfunif/src/mcpf.c
+@@ -17,7 +17,7 @@
+ /* A different version of comfmt will likely be needed if your system */
+ /* doesn't have a POSIX compatible sh program. (I'm thinking MS-Windows?) */
+ 
+-static const char * const comfmt="bin/%.50s %.0f >> %.299s/report.txt 2>&1";
++static const char * const comfmt="@out@/testfunif-bin/%.50s %.0f >> %.299s/report.txt 2>&1";
+ 
+ static const char * const mcp_version="MCPF version 13";
+ 
+@@ -28,7 +28,6 @@ static const struct prog progs[]=
+ 	{"tri",		1, 500000},
+ 	{"nda8",	1, 800000},
+ 	{"nda4",	1, 400000},
+-	{"rda",		2, 400000},
+ 	{"dim3",	3, 240000},
+ 	{"dim56",	4, 240000},
+ 	{"dim155",	4, 3900000},
+diff --git a/testfunif/src/pmcpf.c b/testfunif/src/pmcpf.c
+index 1bca3ee..3cae8d2 100644
+--- a/testfunif/src/pmcpf.c
++++ b/testfunif/src/pmcpf.c
+@@ -24,7 +24,7 @@
+ /* A different version of comfmt will likely be needed if your system */
+ /* doesn't have a POSIX compatible sh program. (I'm thinking MS-Windows?) */
+ 
+-static const char * const comfmt="bin/%.50s %.0f > %.350s 2>&1";
++static const char * const comfmt="@out@/testfunif-bin/%.50s %.0f > %.350s 2>&1";
+ 
+ static const char * const mcp_version="PMCPF version 13p";
+ 
+@@ -35,7 +35,6 @@ static const struct prog progs[]=
+ 	{"tri",		1, 500000},
+ 	{"nda8",	1, 800000},
+ 	{"nda4",	1, 400000},
+-	{"rda",		2, 400000},
+ 	{"dim3",	3, 240000},
+ 	{"dim56",	4, 240000},
+ 	{"dim155",	4, 3900000},
+diff --git a/testunif/src/mcp.c b/testunif/src/mcp.c
+index a39a18f..0b72a4e 100644
+--- a/testunif/src/mcp.c
++++ b/testunif/src/mcp.c
+@@ -21,7 +21,7 @@
+ /* A different version of comfmt will likely be needed if your system */
+ /* doesn't have a POSIX compatible sh program. (I'm thinking MS-Windows?) */
+ 
+-static const char * const comfmt="bin/%.50s %.0f >> %.299s/report.txt 2>&1";
++static const char * const comfmt="@out@/testunif-bin/%.50s %.0f >> %.299s/report.txt 2>&1";
+ 
+ static const char * const mcp_version="MCP version 13";
+ 
+diff --git a/testunif/src/pmcp.c b/testunif/src/pmcp.c
+index ad39dae..6f10a54 100644
+--- a/testunif/src/pmcp.c
++++ b/testunif/src/pmcp.c
+@@ -24,7 +24,7 @@
+ /* A different version of comfmt will likely be needed if your system */
+ /* doesn't have a POSIX compatible sh program. (I'm thinking MS-Windows?) */
+ 
+-static const char * const comfmt="bin/%.50s %.0f >> %.350s 2>&1";
++static const char * const comfmt="@out@/testunif-bin/%.50s %.0f >> %.350s 2>&1";
+ 
+ static const char * const mcp_version="PMCP version 13";
+ 

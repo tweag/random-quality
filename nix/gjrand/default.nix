@@ -8,7 +8,7 @@ stdenv.mkDerivation {
   };
 
   patchPhase = ''
-    patch -p1 < ${./gjrand-4.3.0.0-skip-rda.patch}
+    patch -p1 < ${./gjrand-4.3.0.0-skip-rda-fix-paths.patch}
   '';
   buildPhase = ''
     pushd src
@@ -16,14 +16,14 @@ stdenv.mkDerivation {
     popd
 
     pushd testunif/src
-        sed -i "s:comfmt=\"bin:comfmt=\"$out/testunif-bin:" mcp.c
-        sed -i "s:comfmt=\"bin:comfmt=\"$out/testunif-bin:" pmcp.c
+        substituteInPlace mcp.c --subst-var out
+        substituteInPlace pmcp.c --subst-var out
         bash compile
     popd
 
     pushd testfunif/src
-        sed -i "s:comfmt=\"bin:comfmt=\"$out/testfunif-bin:" mcpf.c
-        sed -i "s:comfmt=\"bin:comfmt=\"$out/testfunif-bin:" pmcpf.c
+        substituteInPlace mcpf.c --subst-var out
+        substituteInPlace pmcpf.c --subst-var out
         bash compile
     popd
   '';
