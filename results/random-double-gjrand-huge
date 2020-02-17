@@ -1,0 +1,172 @@
+$ git rev-parse HEAD
+54fa7f7b5add85495179491896c606e7141e604f
+$ generate random-double | pmcpf --huge
+
+***** PMCPF version 13p --huge *****
+
+
+
+=================
+tri 1/1 (10737418240 bytes)
+========
+blocksize = 64
+lo  var     0.87161; skew     -0.4068; m5    -0.38497;
+mid var     0.21593; skew    -0.68164; m5    -0.91178;
+hi  var     0.28164; skew    -0.45387; m5    -0.18521;
+blocksize = 256
+lo  var     -1.7712; skew    -0.71455; m5    -0.64801;
+mid var    -0.92071; skew     0.67048; m5     0.74249;
+hi  var     -1.0202; skew     0.38193; m5     0.47698;
+blocksize = 1024
+lo  var     -1.7261; skew     0.20828; m5     0.36519;
+mid var     0.74528; skew     0.40828; m5     0.39635;
+hi  var   -0.066431; skew      1.3583; m5      2.0708;
+blocksize = 4096
+lo  var    -0.47238; skew     0.51844; m5      1.5001;    mean    -0.51276;
+mid var       1.518; skew    -0.40336; m5    -0.35866;    mean   -0.040991;
+hi  var     0.52971; skew     0.84435; m5     0.72587;    mean     0.55376;
+
+processed 1.1e+10 numbers in 8.35e+03 seconds. Mon Feb 17 13:55:23 2020
+
+one sided P value (very small numbers are bad)
+P = 0.783
+
+
+=================
+nda8 1/1 (10737418240 bytes)
+========
+extreme = 4.08e-06   (4 12 28 +)
+transform = 4.52   (f 8 41)
+pvals (0.0489 0.0732)
+
+processed 1.1e+10 numbers in 8.35e+03 seconds. Mon Feb 17 13:55:23 2020
+
+one sided P value (very small numbers are bad)
+P = 0.0954
+
+
+=================
+nda4 1/1 (10737418240 bytes)
+========
+extreme = 3.63e-05   (7 2 12 +)
+transform = 3.84   (5 f 14)
+pvals (0.36 0.779)
+
+processed 1.1e+10 numbers in 8.35e+03 seconds. Mon Feb 17 13:55:23 2020
+
+one sided P value (very small numbers are bad)
+P = 0.59
+
+
+=================
+dim3 1/3 (3579139413 bytes)
+========
+counts  =    1.22037 sigma (p = 0.222)
+count   =    4.61063 sigma (p = 0.65) (transformed)
+sums    =   -1.49254 sigma (p = 0.136)
+sum     =    4.62911 sigma (p = 0.618) (transformed)
+abs     =    0.61074 sigma (p = 0.541)
+abs     =    4.83316 sigma (p = 0.297) (transformed)
+
+processed 3.6e+09 numbers in 3.29e+03 seconds. Mon Feb 17 12:31:04 2020
+
+one sided P value (very small numbers are bad)
+P = 0.583
+
+
+=================
+dim56 1/4 (2684354560 bytes)
+========
+sum 1    =    4.61120 sigma (p = 0.65) (transformed)
+abs 1    =    4.69745 sigma (p = 0.499) (transformed)
+sum 2    =    4.60819 sigma (p = 0.655) (transformed)
+abs 2    =    4.48280 sigma (p = 0.855) (transformed)
+
+processed 2.7e+09 numbers in 2.7e+03 seconds. Mon Feb 17 12:21:13 2020
+
+one sided P value (very small numbers are bad)
+P = 0.937
+
+
+=================
+dim155 1/4 (2684354560 bytes)
+========
+counts  =    0.79461 sigma (p = 0.427)
+count  weight =  9  idx = 3ff3d3  p = 0.24 (transformed)
+sums    =    0.55770 sigma (p = 0.577)
+sum    weight =  6  idx = 12210a  p = 0.809 (transformed)
+abs     =   -0.52632 sigma (p = 0.599)
+abs    weight =  5  idx = 024058  p = 0.355 (transformed)
+
+processed 2.7e+09 numbers in 2.7e+03 seconds. Mon Feb 17 12:21:13 2020
+
+one sided P value (very small numbers are bad)
+P = 0.807
+
+
+=================
+diff10 1/4 (2684354560 bytes)
+========
+order = 0 : chis =      16478 ;  p = 0.599352
+order = 1 : chis =      16212 ;  p = 0.345094
+order = 2 : chis =      16419 ;  p = 0.841088
+order = 3 : chis =      16516 ;  p = 0.461575
+order = 4 : chis =      16485 ;  p = 0.570571
+order = 5 : chis =      16239 ;  p = 0.426529
+order = 6 : chis =      16405 ;  p = 0.901317
+order = 7 : chis =      16254 ;  p = 0.477107
+order = 8 : chis =      16379 ;  p = 0.985062
+order = 9 : chis =      16477 ;  p = 0.601937
+
+processed 2.7e+09 numbers in 2.7e+03 seconds. Mon Feb 17 12:21:13 2020
+
+one sided P value (very small numbers are bad)
+P = 0.985
+
+
+=================
+diff3 1/8 (1342177280 bytes)
+========
+chis =       3957  (0.126108)
+chis =       4223  (0.160307)
+chis =       4141  (0.608063)
+chis =       4252  (0.085562)
+chis =       4292  (0.0312008)
+chis =       4010  (0.346194)
+chis =       3996  (0.275328)
+chis =       4166  (0.429649)
+chis =       4190  (0.29579)
+chis =       3872  (0.012385)
+chis =       4062  (0.720711)
+
+processed 1.3e+09 numbers in 1.72e+03 seconds. Mon Feb 17 12:04:48 2020
+
+one sided P value (very small numbers are bad)
+P = 0.128
+
+
+=================
+chi 1/32 (335544320 bytes)
+========
+expected range [ 191 205 227 284 310 331 ]
+      291.78410
+      248.06089
+      262.00569
+      236.27676
+      273.45730
+      279.33243
+
+processed 3.4e+08 numbers in 590 seconds. Mon Feb 17 11:46:00 2020
+
+one sided P value (very small numbers are bad)
+P = 0.512
+
+
+====================
+completed 9 tests
+8 out of 9 tests ok.
+1 grade 1 failures (probably ok).
+
+
+Overall summary one sided P-value (smaller numbers bad)
+P = 0.594 : ok
