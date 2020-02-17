@@ -1,0 +1,24 @@
+diff --git a/testfunif/src/mcpf.c b/testfunif/src/mcpf.c
+index 619e629..8996128 100644
+--- a/testfunif/src/mcpf.c
++++ b/testfunif/src/mcpf.c
+@@ -28,7 +28,6 @@ static const struct prog progs[]=
+ 	{"tri",		1, 500000},
+ 	{"nda8",	1, 800000},
+ 	{"nda4",	1, 400000},
+-	{"rda",		2, 400000},
+ 	{"dim3",	3, 240000},
+ 	{"dim56",	4, 240000},
+ 	{"dim155",	4, 3900000},
+diff --git a/testfunif/src/pmcpf.c b/testfunif/src/pmcpf.c
+index 1bca3ee..349302c 100644
+--- a/testfunif/src/pmcpf.c
++++ b/testfunif/src/pmcpf.c
+@@ -35,7 +35,6 @@ static const struct prog progs[]=
+ 	{"tri",		1, 500000},
+ 	{"nda8",	1, 800000},
+ 	{"nda4",	1, 400000},
+-	{"rda",		2, 400000},
+ 	{"dim3",	3, 240000},
+ 	{"dim56",	4, 240000},
+ 	{"dim155",	4, 3900000},
