@@ -1,7 +1,8 @@
-{ stdenv, fetchurl, unzip }:
+{ stdenv, fetchurl, unzip, gcc}:
 
 stdenv.mkDerivation {
   name = "gjrand";
+  nativeBuildInputs = [ gcc ];
   src = fetchurl {
     url = "https://downloads.sourceforge.net/project/gjrand/gjrand/gjrand.4.3.0/gjrand.4.3.0.tar.bz2";
     sha256 = "1qzh902phgj5204lnmmghmxa08q3jia6hp7jy6ha8iybms0wci98";
