@@ -1,4 +1,5 @@
 {-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Main where
 
@@ -17,18 +18,23 @@ import qualified System.Random.SplitMix as SM
 -- Helpers with explicit types
 -------------------------------------------------------------------------------
 
-randomInt :: R.RandomGen g => g -> (Int, g)
-randomInt = R.random
+randomIntAsWord32 :: R.RandomGen g => g -> (Word32, g)
+randomIntAsWord32 gen = (fromIntegral i, gen')
+  where
+    (i :: Int, gen') = R.random gen
 
 random32 :: R.RandomGen g => g -> (Word32, g)
 random32 = R.random
+
+randomDouble :: R.RandomGen g => g -> (Double, g)
+randomDouble = R.random
 
 -------------------------------------------------------------------------------
 -- Sequence of random numbers, no splitting
 -------------------------------------------------------------------------------
 
 defaultSequence ::
-     (R.RandomGen g, Integral i, Integral j) => BS.FixedPrim i -> (g -> (j, g)) -> g -> (BS.Builder, g)
+     R.RandomGen g => BS.FixedPrim i -> (g -> (i, g)) -> g -> (BS.Builder, g)
 defaultSequence prim f gen =
   let (r1, gen1) = f gen
       (r2, gen2) = f gen1
@@ -36,16 +42,8 @@ defaultSequence prim f gen =
       (r4, gen4) = f gen3
    in ( BS.primFixed
           (prim BS.>*< prim BS.>*< prim BS.>*< prim)
-          (fromIntegral r1, (fromIntegral r2, (fromIntegral r3, fromIntegral r4)))
+          (r1, (r2, (r3, r4)))
       , gen4)
-
-defaultSequenceInt ::
-     R.RandomGen g => (g -> (Int, g)) -> g -> (BS.Builder, g)
-defaultSequenceInt = defaultSequence BS.word32Host
-
-defaultSequenceWord32 ::
-     R.RandomGen g => (g -> (Word32, g)) -> g -> (BS.Builder, g)
-defaultSequenceWord32 = defaultSequence BS.word32Host
 
 -------------------------------------------------------------------------------
 -- Sequences of random numbers that use 'split'
@@ -133,9 +131,11 @@ main = do
   case args of
     -- random
     ["random-int"] ->
-      spew stdout (R.mkStdGen 1337) (defaultSequenceInt randomInt)
+      spew stdout (R.mkStdGen 1337) (defaultSequence BS.word32Host randomIntAsWord32)
+    ["random-double"] ->
+      spew stdout (R.mkStdGen 1337) (defaultSequence BS.doubleHost randomDouble)
     ["random-word32"] ->
-      spew stdout (R.mkStdGen 1337) (defaultSequenceWord32 random32)
+      spew stdout (R.mkStdGen 1337) (defaultSequence BS.word32Host random32)
     ["random-word32-split"] ->
       spew stdout (R.mkStdGen 1337) (splitSequence BS.word32Host random32)
     ["random-word32-splita"] ->
@@ -146,8 +146,10 @@ main = do
       spew stdout (R.mkStdGen 1337) (splitSequenceR BS.word32Host random32)
 
     -- splitmix
+    ["splitmix-double"] ->
+      spew stdout (SM.mkSMGen 1337) (defaultSequence BS.doubleHost SM.nextDouble)
     ["splitmix-word32"] ->
-      spew stdout (SM.mkSMGen 1337) (defaultSequenceWord32 SM.nextWord32)
+      spew stdout (SM.mkSMGen 1337) (defaultSequence BS.word32Host SM.nextWord32)
     ["splitmix-word32-split"] ->
       spew stdout (SM.mkSMGen 1337) (splitSequence BS.word32Host SM.nextWord32)
     ["splitmix-word32-splita"] ->
