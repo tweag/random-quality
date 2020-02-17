@@ -1,9 +1,9 @@
-{ stdenv, fetchurl, unzip, testu01 }:
+{ stdenv, fetchurl, unzip, testu01, gcc }:
 
 stdenv.mkDerivation rec {
   name = "TestU01_stdin";
   src = ./.;
-  nativeBuildInputs = [ testu01 ];
+  nativeBuildInputs = [ testu01 gcc ];
   hardeningDisable = [ "format" ];
   buildInputs = [];
   configureFlags = [];
