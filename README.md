@@ -57,6 +57,7 @@ The test sequences (valid values for `SEQUENCE`) are:
 Generators using the [`random`][hackage-random] library:
 
 * `random-int`
+* `random-double`
 * `random-word32`
 * `random-word32-split`
 * `random-word32-splitl`
@@ -65,6 +66,7 @@ Generators using the [`random`][hackage-random] library:
 
 Generators using the [`splitmix`][hackage-splitmix] library:
 
+* `splitmix-double`
 * `splitmix-word32`
 * `splitmix-word32-split`
 * `splitmix-word32-splitl`
@@ -83,8 +85,9 @@ all of which accept a stream of random numbers on stdin:
 * [TestU01][]: run via `TestU01_stdin -[s|c|b]`, which expects a stream of
   32-bit random numbers. Three test batteries are available: `-s` starts
   SmallCrush, `-c` starts Crush, `-b` starts BigCrush.
-* [gjrand][]: run via `pmcp` to execute the standard test size (1 GB). See
-  `pmcp -h` for options.
+* [gjrand][]: run via `pmcp` to execute the standard test size (1 GB) on ints,
+  and `pmcpf` to test double precision floating point numbers. See `pmcp -h`
+  and `pmcpf -h` for options.
 
 # Acknowledgements
 
