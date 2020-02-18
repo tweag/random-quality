@@ -51,8 +51,8 @@ The test sequences (valid values for `SEQUENCE`) are:
 
 * `split`, as described in section 5.5 of [Evaluation of splittable
   pseudo-random generators][doi-split-evaluation],
-* `splitsl`, `splitsr` and `splitsa`, as described in [Testing PRNGs for
-  High-Quality Randomness][peteroupc-random-test].
+* `splitl`, `splitr` and `splita`, as described in section 5.6 of [Evaluation
+  of splittable pseudo-random generators][doi-split-evaluation].
 
 Generators using the [`random`][hackage-random] library:
 
