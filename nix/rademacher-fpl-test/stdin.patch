@@ -1,0 +1,68 @@
+diff --git a/scripts/detect-significand-bias.py b/scripts/detect-significand-bias.py
+index e3c3fd7..8ad2a18 100644
+--- a/scripts/detect-significand-bias.py
++++ b/scripts/detect-significand-bias.py
+@@ -98,42 +98,27 @@ def main():
+     tol = 1e-3
+     header_fmt = '{:40s}  {:<9d}  {:s}'
+     fmt = '{:40s}  {:<9.2e}  {:s}'
++    count = 10 * 1024 * 1024
+ 
+-    for index, filename in enumerate(sys.argv[1:]):
+-        if filename[-11:] == 'float64.txt':
+-            xs = np.loadtxt(filename, dtype=np.float64)
++    if True: # only here to minimise the diff
++        import tempfile
++        xs = None
++        with tempfile.NamedTemporaryFile(mode='wb') as tmp:
++            tmp.write(sys.stdin.buffer.read(count))
++            tmp.flush()
++            xs = np.fromfile(tmp.name, dtype=np.float64)
+ 
+-        elif filename[-11:] == 'float32.txt':
+-            xs = np.loadtxt(filename, dtype=np.float32)
+-
+-        elif filename[-4:] == '.txt':
+-            xs = np.loadtxt(filename)
+-            ys = xs.astype(np.float32).astype(np.float64)
+-
+-            eps32 = np.finfo(np.float32).eps
+-
+-            if max(abs(xs-ys)) < eps32/8:
+-                xs = xs.astype(np.float32)
+-
+-        elif filename[-6:] == '.bin64':
+-            xs = np.fromfile(filename, dtype=np.float64)
+-        elif filename[-6:] == '.bin32':
+-            xs = np.fromfile(filename, dtype=np.float32)
+-        else:
+-            print('unknown file extension for file "{:s}"'.format(filename))
+-            continue
+-
+-        print(header_fmt.format(filename, xs.size, str(xs.dtype)))
++        print(header_fmt.format("<stdin>", xs.size, str(xs.dtype)))
+ 
+         if np.any(np.isnan(xs)):
+             msg = 'dataset contains NaNs'
+             print(msg)
+-            continue
++            sys.exit(1)
+ 
+         if min(xs) < 0 or max(xs) >= 1:
+             msg = 'dataset contains values {:8.2e}, {:8.2e} outside of [0,1)'
+             print(msg.format(min(xs), max(xs)))
+-            continue
++            sys.exit(1)
+ 
+         uniform = scipy.stats.uniform(loc=0, scale=1)
+         _, p_ks = scipy.stats.kstest(xs, uniform.cdf)
+@@ -149,9 +134,6 @@ def main():
+         print(fmt.format('conditional distribution', p_cond, grade(p_cond)))
+         print(fmt.format('monobit-exponent rank correlation', p_tau, grade(p_tau)))
+ 
+-        if index+2 < len(sys.argv):
+-            print()
+-
+ 
+ if __name__ == '__main__':
+     main()

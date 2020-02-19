@@ -8,6 +8,7 @@ particularly easy to install and use:
   * [TestU01 (SmallCrush, Crush, BigCrush)](http://simul.iro.umontreal.ca/testu01/tu01.html "venerable")
   * [PractRand](http://pracrand.sourceforge.net/ "active")
   * [gjrand](http://gjrand.sourceforge.net/ "active")
+  * [rademacher-fpl](https://gitlab.com/christoph-conrads/rademacher-fpl/-/tree/master "active")
 
 This repo provides a <kbd>nix-shell</kbd> which will build
 <kbd>dieharder</kbd>, <kbd>TestU01</kbd> and <kbd>PractRand</kbd> and
@@ -88,6 +89,8 @@ all of which accept a stream of random numbers on stdin:
 * [gjrand][]: run via `pmcp` to execute the standard test size (1 GB) on ints,
   and `pmcpf` to test double precision floating point numbers. See `pmcp -h`
   and `pmcpf -h` for options.
+* [rademacher-fpl][]: run via `detect-significand-bias` to execute the standard
+  test size (10 MB) on double precision floating point numbers.
 
 # Acknowledgements
 
@@ -108,4 +111,5 @@ method:
 [dieharder]: http://webhome.phy.duke.edu/~rgb/General/dieharder.php
 [gjrand]: http://gjrand.sourceforge.net/
 [practrand]: http://pracrand.sourceforge.net/
+[rademacher-fpl]: https://gitlab.com/christoph-conrads/rademacher-fpl/-/tree/master
 [testu01]: http://simul.iro.umontreal.ca/testu01/tu01.html
