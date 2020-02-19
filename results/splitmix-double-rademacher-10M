@@ -1,0 +1,8 @@
+$ git rev-parse HEAD
+bf00ba3f279b7b866fd8b7fbe75d8bb8c899e8a7
+$ generate splitmix-double | detect-significand-bias
+<stdin>                                   1310720    float64
+kolmogorov-smirnov                        9.98e-01   pass
+monobit                                   3.46e-323  fail
+conditional distribution                  0.00e+00   fail
+monobit-exponent rank correlation         1.02e-01   pass
