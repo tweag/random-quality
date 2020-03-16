@@ -57,7 +57,7 @@ The test sequences (valid values for `SEQUENCE`) are:
 
 Generators using the [`random`][hackage-random] library:
 
-* `random-int`
+* `random-next`
 * `random-double`
 * `random-word32`
 * `random-word32-split`

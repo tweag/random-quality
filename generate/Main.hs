@@ -18,10 +18,10 @@ import qualified System.Random.SplitMix as SM
 -- Helpers with explicit types
 -------------------------------------------------------------------------------
 
-randomIntAsWord32 :: R.RandomGen g => g -> (Word32, g)
-randomIntAsWord32 gen = (fromIntegral i, gen')
+randomNext:: R.RandomGen g => g -> (Word32, g)
+randomNext gen = (fromIntegral i, gen')
   where
-    (i :: Int, gen') = R.random gen
+    (i, gen') = R.next gen
 
 random32 :: R.RandomGen g => g -> (Word32, g)
 random32 = R.random
@@ -130,8 +130,8 @@ main = do
   args <- getArgs
   case args of
     -- random
-    ["random-int"] ->
-      spew stdout (R.mkStdGen 1337) (defaultSequence BS.word32Host randomIntAsWord32)
+    ["random-next"] ->
+      spew stdout (R.mkStdGen 1337) (defaultSequence BS.word32Host randomNext)
     ["random-double"] ->
       spew stdout (R.mkStdGen 1337) (defaultSequence BS.doubleHost randomDouble)
     ["random-word32"] ->
