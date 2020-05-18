@@ -1,13 +1,14 @@
-cabal-version:       >=1.10
-
-name:                generate
-version:             0.1.0.0
-build-type:          Simple
+cabal-version: >=1.10
+name:          generate
+version:       0.1.0.0
+build-type:    Simple
 
 executable generate
-  main-is:             Main.hs
-  build-depends:       base >=4.12 && <4.13
-                     , bytestring
-                     , random
-                     , splitmix
-  default-language:    Haskell2010
+    main-is:          Main.hs
+    default-language: Haskell2010
+    ghc-options:      -O2 -Wall
+    build-depends:
+        base >=4.12 && <4.13,
+        bytestring -any,
+        random -any,
+        splitmix -any

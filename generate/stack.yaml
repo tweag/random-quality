@@ -1,6 +1,9 @@
-flags: {}
+resolver: lts-14.25
 packages:
 - '.'
-
-extra-deps: []
-resolver: lts-14.25
+flags:
+  splitmix:
+    random: False
+extra-deps:
+- git: https://github.com/idontgetoutmuch/random.git
+  commit: 9da5155e35288467fdfe97506cdfa42a59cd5709
