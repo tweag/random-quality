@@ -21,11 +21,9 @@ generator implementations.
 
 # Instructions
 
-* Clone the repo
+* Enter the test environment
   ```shell
-  git clone https://github.com/tweag/random-quality.git
-  cd random-quality
-  nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/19.09.tar.gz
+  nix-shell https://github.com/tweag/random-quality/archive/master.tar.gz
   ```
 
 * Run a test
