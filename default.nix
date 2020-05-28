@@ -1,4 +1,6 @@
-{ pkgsSrc ? ./nix/nixpkgs.nix }:
+{ pkgsSrc ? ./nix/nixpkgs.nix
+, buildHaskell ? false
+}:
 let
   overlay = self: super:
     {
@@ -31,6 +33,8 @@ pkgs.mkShell {
 
     # utilities
     xxd
+  ] ++ stdenv.lib.optionals buildHaskell [
+    generate
   ] ++ stdenv.lib.optionals stdenv.isDarwin [
     libiconv
   ];
