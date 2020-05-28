@@ -1,4 +1,4 @@
-# Introduction
+# random-quality
 
 There are many now quite venerable and newer test suites that will
 check the quality of random number generators but none of them are
@@ -15,70 +15,45 @@ This repo provides a <kbd>nix-shell</kbd> which will build
 allow you (in the nix shell) to use them almost all identically with
 the minimum amount of fuss.
 
-In addition, this repo contains a Haskell program that will generate a
+Optionally, this repo contains a Haskell program that will generate a
 stream of random numbers from some of the Haskell random number
-generator implementations.
+generator implementations. See [generate/README.md](generate/README.md) for
+details.
 
-# Instructions
+# Setup
 
-* Enter the test environment
+* Enter the test environment containing only the PRNG test batteries:
   ```shell
   nix-shell https://github.com/tweag/random-quality/archive/master.tar.gz
   ```
+  To test that the environment is set up correctly, run:
+  ```shell
+  RNG_test stdin32 < /dev/zero
+  ```
+  This should show a spectacularly failed test: `/dev/zero` is not a good PRNG.
+  See [Tests](#tests) for details.
 
-* Run a test
+* Alternatively, enter the test environment containing the PRNG test batteries
+  as well as a number of Haskell PRNGs:
+  ```shell
+  nix-shell https://github.com/tweag/random-quality/archive/master.tar.gz \
+      --arg buildHaskell true
+  ```
+  To test that the environment is set up correctly, run:
   ```shell
   generate random-word32 | RNG_test stdin32
   ```
-  This uses the `random` library to generate a sequence of random numbers, and
-  feeds them into `RNG_test`, which is PractRand's statistical randomness test
-  binary. See [Generators](#generators) and [Tests](#tests) for details.
-
-# Generators
-
-The `generate` binary takes a single argument which determines the sequence of
-random numbers that are written to stdout.
-
-The form of the argument is `LIBRARY-TYPE[-SEQUENCE]`.
-
-* `LIBRARY` is the Haskell library used,
-* `TYPE` is the output type of the random number generator, and
-* `SEQUENCE` is the sequence we use for generating the random number - we use
-  this for stress-testing [`split`][hackage-random-split].
-
-The test sequences (valid values for `SEQUENCE`) are:
-
-* `split`, as described in section 5.5 of [Evaluation of splittable
-  pseudo-random generators][doi-split-evaluation],
-* `splitl`, `splitr` and `splita`, as described in section 5.6 of [Evaluation
-  of splittable pseudo-random generators][doi-split-evaluation].
-
-Generators using the [`random`][hackage-random] library:
-
-* `random-int`
-* `random-double`
-* `random-word32`
-* `random-word32-split`
-* `random-word32-splitl`
-* `random-word32-splitr`
-* `random-word32-splita`
-
-Generators using the [`splitmix`][hackage-splitmix] library:
-
-* `splitmix-double`
-* `splitmix-word32`
-* `splitmix-word32-split`
-* `splitmix-word32-splitl`
-* `splitmix-word32-splitr`
-* `splitmix-word32-splita`
+  The whole test takes a long time, you can cancel it with <kbd>Ctrl+C</kbd>.
+  This uses the `random` library to generate a sequence of random numbers. See
+  [Generators](generate/README.md#generators) and [Tests](#tests) for details.
 
 # Tests
 
 The following randomness test suites are available in the repository via Nix,
 all of which accept a stream of random numbers on stdin:
 
-* [dieharder][]: run `dieharder -f stdin_input_raw -a` to execute all available
-  tests (`-a`). See `dieharder -h` for more options.
+* [dieharder][]: run `dieharder -a -g200` to execute all available tests
+  (`-a`). See `dieharder -h` for more options.
 * [PractRand][]: run via `RNG_test stdin32` to test a stream of 32-bit random
   numbers. See `RNG_test -help` for details.
 * [TestU01][]: run via `TestU01_stdin -[s|c|b]`, which expects a stream of
@@ -89,22 +64,6 @@ all of which accept a stream of random numbers on stdin:
   and `pmcpf -h` for options.
 * [rademacher-fpl][]: run via `detect-significand-bias` to execute the standard
   test size (10 MB) on double precision floating point numbers.
-
-# Acknowledgements
-
-[Peter Occil](https://github.com/peteroupc) for pointing out the
-method for testing generators that support
-[split](https://hackage.haskell.org/package/random-1.1/docs/System-Random.html#v:split)
-method:
-
-  * [Testing PRNGs for High-Quality Randomness][peteroupc-random-test]
-  * [Evaluation of splittable pseudo-random generators][doi-split-evaluation]
-
-[doi-split-evaluation]: https://doi.org/10.1017/S095679681500012X
-[hackage-random]: https://hackage.haskell.org/package/random
-[hackage-random-split]: https://hackage.haskell.org/package/random-1.1/docs/System-Random.html#v:split
-[hackage-splitmix]: https://hackage.haskell.org/package/splitmix
-[peteroupc-random-test]: https://github.com/peteroupc/peteroupc.github.io/blob/master/randomtest.md#testing-prngs-for-high-quality-randomness
 
 [dieharder]: http://webhome.phy.duke.edu/~rgb/General/dieharder.php
 [gjrand]: http://gjrand.sourceforge.net/
