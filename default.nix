@@ -32,6 +32,7 @@ pkgs.mkShell {
     generate
 
     # utilities
+    luajit
     xxd
   ] ++ stdenv.lib.optionals buildHaskell [
     generate

@@ -1,0 +1,18 @@
+$ lua -e 'while true do print(string.format("%08x", math.random(0,0xFFFFFFFF))) end' | xxd -r -p | RNG_test stdin32
+
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0xe7f0363d
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0xe7f0363d
+length= 16 megabytes (2^24 bytes), time= 2.4 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BRank(12):256(2)                  R=+855.4  p~=  1.6e-258   FAIL !!!!!!
+  BRank(12):384(1)                  R= +3360  p~=  1e-1012    FAIL !!!!!!!!
+  BRank(12):512(2)                  R= +8649  p~=  1e-2604    FAIL !!!!!!!!
+  BRank(12):768(1)                  R=+11627  p~=  4e-3501    FAIL !!!!!!!!
+  [Low8/32]BRank(12):256(2)         R=+855.4  p~=  1.6e-258   FAIL !!!!!!
+  [Low8/32]BRank(12):384(1)         R= +3360  p~=  1e-1012    FAIL !!!!!!!!
+  [Low8/32]BRank(12):512(1)         R= +6116  p~=  4e-1842    FAIL !!!!!!!!
+  [Low1/32]BRank(12):256(1)         R=+604.8  p~=  4.2e-183   FAIL !!!!!!
+  ...and 85 test result(s) without anomalies
