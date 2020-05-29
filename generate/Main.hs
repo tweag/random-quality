@@ -22,12 +22,15 @@ randomIntAsWord32 :: R.RandomGen g => g -> (Word32, g)
 randomIntAsWord32 gen = (fromIntegral i, gen')
   where
     (i :: Int, gen') = R.random gen
+{-# INLINE randomIntAsWord32 #-}
 
 random32 :: R.RandomGen g => g -> (Word32, g)
 random32 = R.random
+{-# INLINE random32 #-}
 
 randomDouble :: R.RandomGen g => g -> (Double, g)
 randomDouble = R.random
+{-# INLINE randomDouble #-}
 
 -------------------------------------------------------------------------------
 -- Sequence of random numbers, no splitting
@@ -44,6 +47,7 @@ defaultSequence prim f gen =
           (prim BS.>*< prim BS.>*< prim BS.>*< prim)
           (r1, (r2, (r3, r4)))
       , gen4)
+{-# INLINE defaultSequence #-}
 
 -------------------------------------------------------------------------------
 -- Sequences of random numbers that use 'split'
@@ -74,6 +78,7 @@ splitSequence prim f gPrev =
           (prim BS.>*< prim BS.>*< prim BS.>*< prim)
           (fromIntegral rLL, (fromIntegral rLR, (fromIntegral rRL, fromIntegral rRR)))
       , gNext)
+{-# INLINE splitSequence #-}
 
 -- | Generate a sequence ("sequence S_A") for stress-testing splittable RNGs.
 --
@@ -86,6 +91,7 @@ splitSequenceA prim f gPrev =
       (gLL, gLR) = R.split gL
       (vLL, _) = f gLL
    in (BS.primFixed (prim BS.>*< prim) (fromIntegral vR, fromIntegral vLL), gLR)
+{-# INLINE splitSequenceA #-}
 
 -- | Generate a sequence ("sequence S_L") for stress-testing splittable RNGs.
 --
@@ -96,6 +102,7 @@ splitSequenceL prim f gPrev =
   let (gL, gR) = R.split gPrev
       (vL, _) = f gL
    in (BS.primFixed BS.word32Host (fromIntegral vL), gR)
+{-# INLINE splitSequenceL #-}
 
 -- | Generate a sequence ("sequence S_R") for stress-testing splittable RNGs.
 --
@@ -106,6 +113,7 @@ splitSequenceR prim f gPrev =
   let (gL, gR) = R.split gPrev
       (vR, _) = f gR
    in (BS.primFixed prim (fromIntegral vR), gL)
+{-# INLINE splitSequenceR #-}
 
 -------------------------------------------------------------------------------
 -- Output
@@ -119,6 +127,7 @@ spew h initialGen f = do
     let (v, gen') = f gen
     BS.hPutBuilder h v
     writeIORef ref gen'
+{-# INLINE spew #-}
 
 -------------------------------------------------------------------------------
 -- Main
