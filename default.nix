@@ -42,7 +42,6 @@ pkgs.mkShell {
     testu01-stdin
 
     # generators
-    generate
     generateC
     generateLua
     generatePerl
