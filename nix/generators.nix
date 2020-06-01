@@ -14,7 +14,7 @@
 
   generatePerl = writePerlBin "generate.pl" {} ''
     while () {
-        printf("%08X", int(rand(0xFFFFFFFF + 1)))
+        printf("%08X\n", int(rand(0xFFFFFFFF + 1)))
     }
   '';
 
