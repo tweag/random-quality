@@ -31,8 +31,12 @@ pkgs.mkShell {
     # generators
     generate
 
-    # utilities
+    # interpreters
     luajit
+    perl
+    python
+
+    # utilities
     xxd
   ] ++ stdenv.lib.optionals buildHaskell [
     generate
