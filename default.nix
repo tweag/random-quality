@@ -14,6 +14,19 @@ let
 
       # generators
       generate = self.haskellPackages.callPackage ./generate {};
+      inherit (self.callPackage ./nix/generators.nix {
+        inherit (self.writers)
+          makeScriptWriter
+          writeCBin
+          writePerlBin
+          writePython3Bin
+          ;
+      })
+        generateC
+        generateLua
+        generatePerl
+        generatePython
+        ;
     };
   pkgs = import pkgsSrc { overlays = [ overlay ]; };
 in
@@ -30,11 +43,10 @@ pkgs.mkShell {
 
     # generators
     generate
-
-    # interpreters
-    luajit
-    perl
-    python
+    generateC
+    generateLua
+    generatePerl
+    generatePython
 
     # utilities
     xxd
