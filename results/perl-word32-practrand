@@ -1,0 +1,19 @@
+$ perl -e 'while () {printf("%08X", int(rand(0xFFFFFFFF + 1)))}' | xxd -r -p | RNG_test stdin32
+
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0x18554e81
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0x18554e81
+length= 16 megabytes (2^24 bytes), time= 3.8 seconds
+  Test Name                         Raw       Processed     Evaluation
+  Gap-16:A                          R= +11.0  p =  2.6e-8    VERY SUSPICIOUS
+  ...and 92 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x18554e81
+length= 32 megabytes (2^25 bytes), time= 8.7 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BCFN(2+5,13-6,T)                  R= +11.2  p =  2.8e-4   unusual
+  Gap-16:A                          R= +15.8  p =  1.8e-12    FAIL
+  Gap-16:B                          R=  +4.2  p =  1.9e-3   unusual
+  ...and 97 test result(s) without anomalies
