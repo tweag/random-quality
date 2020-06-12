@@ -170,3 +170,9 @@ main = do
 
     ["splitmix-word64-split"] ->
       spew stdout (SM.mkSMGen 1337) (splitSequence BS.word64Host SM.nextWord64)
+    ["splitmix-word64-splita"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceA BS.word64Host SM.nextWord64)
+    ["splitmix-word64-splitl"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceL BS.word64Host SM.nextWord64)
+    ["splitmix-word64-splitr"] ->
+      spew stdout (SM.mkSMGen 1337) (splitSequenceR BS.word64Host SM.nextWord64)
