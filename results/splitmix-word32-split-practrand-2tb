@@ -1,0 +1,67 @@
+$ git rev-parse HEAD
+4cd2ec22b93bc9946bced508027af87640da139a
+$ generate splitmix-word32-split | RNG_test stdin32
+
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0x3ad4449d
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 128 megabytes (2^27 bytes), time= 3.3 seconds
+  no anomalies in 117 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 256 megabytes (2^28 bytes), time= 7.1 seconds
+  no anomalies in 124 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 512 megabytes (2^29 bytes), time= 14.0 seconds
+  no anomalies in 132 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 1 gigabyte (2^30 bytes), time= 27.5 seconds
+  no anomalies in 141 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 2 gigabytes (2^31 bytes), time= 50.7 seconds
+  no anomalies in 148 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 4 gigabytes (2^32 bytes), time= 97.3 seconds
+  no anomalies in 156 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 8 gigabytes (2^33 bytes), time= 202 seconds
+  no anomalies in 165 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 16 gigabytes (2^34 bytes), time= 409 seconds
+  no anomalies in 172 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 32 gigabytes (2^35 bytes), time= 784 seconds
+  no anomalies in 180 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 64 gigabytes (2^36 bytes), time= 1534 seconds
+  no anomalies in 189 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 128 gigabytes (2^37 bytes), time= 4386 seconds
+  no anomalies in 196 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 256 gigabytes (2^38 bytes), time= 7176 seconds
+  no anomalies in 204 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 512 gigabytes (2^39 bytes), time= 12895 seconds
+  no anomalies in 213 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 1 terabyte (2^40 bytes), time= 32393 seconds
+  no anomalies in 220 test result(s)
+
+rng=RNG_stdin32, seed=0x3ad4449d
+length= 2 terabytes (2^41 bytes), time= 58246 seconds
+  no anomalies in 228 test result(s)
