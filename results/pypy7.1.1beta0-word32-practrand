@@ -1,0 +1,75 @@
+$ pypy3 -V
+Python 3.6.1 (784b254d669919c872a505b807db8462b6140973, Jun 01 2020, 09:19:41)
+[PyPy 7.1.1-beta0 with GCC 9.2.0]
+$ pypy3 -c 'from random import randint
+while True:
+    print("{0:08x}".format(randint(0, 0xFFFFFFFF)))' | xxd -r -p | RNG_test stdin32
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0xac05bfee
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 8 megabytes (2^23 bytes), time= 3.1 seconds
+  no anomalies in 84 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 16 megabytes (2^24 bytes), time= 7.0 seconds
+  no anomalies in 93 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 32 megabytes (2^25 bytes), time= 13.3 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low8/32]Gap-16:A                 R=  -3.9  p =1-5.9e-4   unusual
+  ...and 99 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 64 megabytes (2^26 bytes), time= 25.4 seconds
+  no anomalies in 108 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 128 megabytes (2^27 bytes), time= 51.3 seconds
+  no anomalies in 117 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 256 megabytes (2^28 bytes), time= 97.4 seconds
+  no anomalies in 124 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 512 megabytes (2^29 bytes), time= 187 seconds
+  no anomalies in 132 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 1 gigabyte (2^30 bytes), time= 374 seconds
+  no anomalies in 141 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 2 gigabytes (2^31 bytes), time= 743 seconds
+  no anomalies in 148 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 4 gigabytes (2^32 bytes), time= 1433 seconds
+  no anomalies in 156 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 8 gigabytes (2^33 bytes), time= 2605 seconds
+  no anomalies in 165 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 16 gigabytes (2^34 bytes), time= 4891 seconds
+  no anomalies in 172 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 32 gigabytes (2^35 bytes), time= 9403 seconds
+  no anomalies in 180 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 64 gigabytes (2^36 bytes), time= 18454 seconds
+  no anomalies in 189 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 128 gigabytes (2^37 bytes), time= 36624 seconds
+  no anomalies in 196 test result(s)
+
+rng=RNG_stdin32, seed=0xac05bfee
+length= 256 gigabytes (2^38 bytes), time= 94607 seconds
+  no anomalies in 204 test result(s)

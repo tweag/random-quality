@@ -1,0 +1,83 @@
+$ git -C lua-5.4.0/ rev-parse HEAD
+b7c666475d4f6d13125c441b2f838cd5c57fc454
+$ lua-5.4.0/src/lua -e 'while true do
+  io.write(string.format("%08x\n", math.random(0, 0xFFFFFFFF)))
+end' | xxd -r -p | RNG_test stdin32
+
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0x4a59e393
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 16 megabytes (2^24 bytes), time= 2.6 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]DC6-9x1Bytes-1           R=  -5.0  p =1-2.8e-3   unusual
+  ...and 92 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 32 megabytes (2^25 bytes), time= 6.1 seconds
+  no anomalies in 100 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 64 megabytes (2^26 bytes), time= 12.2 seconds
+  no anomalies in 108 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 128 megabytes (2^27 bytes), time= 22.9 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]DC6-9x1Bytes-1           R=  +5.4  p =  8.8e-3   unusual
+  ...and 116 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 256 megabytes (2^28 bytes), time= 44.7 seconds
+  Test Name                         Raw       Processed     Evaluation
+  BCFN(2+3,13-3,T)                  R=  -7.7  p =1-2.3e-4   unusual
+  ...and 123 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 512 megabytes (2^29 bytes), time= 90.3 seconds
+  no anomalies in 132 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 1 gigabyte (2^30 bytes), time= 193 seconds
+  no anomalies in 141 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 2 gigabytes (2^31 bytes), time= 397 seconds
+  no anomalies in 148 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 4 gigabytes (2^32 bytes), time= 819 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low8/32]DC6-9x1Bytes-1           R=  +6.2  p =  2.2e-3   unusual
+  ...and 155 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 8 gigabytes (2^33 bytes), time= 1597 seconds
+  no anomalies in 165 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 16 gigabytes (2^34 bytes), time= 2966 seconds
+  no anomalies in 172 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 32 gigabytes (2^35 bytes), time= 5592 seconds
+  no anomalies in 180 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 64 gigabytes (2^36 bytes), time= 10840 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low8/32]DC6-9x1Bytes-1           R=  +4.6  p =  8.9e-3   unusual
+  ...and 188 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 128 gigabytes (2^37 bytes), time= 21354 seconds
+  no anomalies in 196 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 256 gigabytes (2^38 bytes), time= 42378 seconds
+  no anomalies in 204 test result(s)
+
+rng=RNG_stdin32, seed=0x4a59e393
+length= 512 gigabytes (2^39 bytes), time= 106480 seconds
+  no anomalies in 213 test result(s)

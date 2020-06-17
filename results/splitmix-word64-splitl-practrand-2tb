@@ -1,0 +1,72 @@
+$ git rev-parse HEAD
+d30d319c8c2cef868ec0b51d0419d810b6f37678
+$ generate splitmix-word64-splitl | RNG_test stdin64 -tlmax 2TB
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin64, seed = 0xaaf1f2fc
+test set = normal, folding = standard (64 bit)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 64 megabytes (2^26 bytes), time= 2.9 seconds
+  no anomalies in 137 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 128 megabytes (2^27 bytes), time= 7.0 seconds
+  no anomalies in 148 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 256 megabytes (2^28 bytes), time= 15.1 seconds
+  no anomalies in 159 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 512 megabytes (2^29 bytes), time= 33.8 seconds
+  no anomalies in 169 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 1 gigabyte (2^30 bytes), time= 66.6 seconds
+  no anomalies in 180 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 2 gigabytes (2^31 bytes), time= 139 seconds
+  no anomalies in 191 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 4 gigabytes (2^32 bytes), time= 295 seconds
+  no anomalies in 201 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 8 gigabytes (2^33 bytes), time= 950 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/64]DC6-9x1Bytes-1           R=  -4.0  p =1-7.4e-3   unusual
+  ...and 211 test result(s) without anomalies
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 16 gigabytes (2^34 bytes), time= 1742 seconds
+  no anomalies in 223 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 32 gigabytes (2^35 bytes), time= 3247 seconds
+  no anomalies in 233 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 64 gigabytes (2^36 bytes), time= 6435 seconds
+  no anomalies in 244 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 128 gigabytes (2^37 bytes), time= 13201 seconds
+  no anomalies in 255 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 256 gigabytes (2^38 bytes), time= 27032 seconds
+  no anomalies in 265 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 512 gigabytes (2^39 bytes), time= 53426 seconds
+  no anomalies in 276 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 1 terabyte (2^40 bytes), time= 112672 seconds
+  no anomalies in 287 test result(s)
+
+rng=RNG_stdin64, seed=0xaaf1f2fc
+length= 2 terabytes (2^41 bytes), time= 164819 seconds
+  no anomalies in 297 test result(s)

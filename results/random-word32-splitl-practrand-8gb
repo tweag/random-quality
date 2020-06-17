@@ -1,0 +1,57 @@
+$ git rev-parse HEAD
+d30d319c8c2cef868ec0b51d0419d810b6f37678
+$ generate random-word32-splitl | RNG_test stdin32
+RNG_test using PractRand version 0.93
+RNG = RNG_stdin32, seed = 0x5a7bc0b6
+test set = normal, folding = standard (32 bit)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 8 megabytes (2^23 bytes), time= 2.7 seconds
+  no anomalies in 84 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 16 megabytes (2^24 bytes), time= 6.3 seconds
+  Test Name                         Raw       Processed     Evaluation
+  [Low1/32]FPF-14+6/16:cross        R=  +4.5  p =  6.7e-4   unusual
+  ...and 92 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 32 megabytes (2^25 bytes), time= 13.4 seconds
+  no anomalies in 100 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 64 megabytes (2^26 bytes), time= 24.7 seconds
+  no anomalies in 108 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 128 megabytes (2^27 bytes), time= 46.1 seconds
+  no anomalies in 117 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 256 megabytes (2^28 bytes), time= 91.3 seconds
+  no anomalies in 124 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 512 megabytes (2^29 bytes), time= 190 seconds
+  no anomalies in 132 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 1 gigabyte (2^30 bytes), time= 410 seconds
+  no anomalies in 141 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 2 gigabytes (2^31 bytes), time= 862 seconds
+  no anomalies in 148 test result(s)
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 4 gigabytes (2^32 bytes), time= 1702 seconds
+  Test Name                         Raw       Processed     Evaluation
+  Gap-16:B                          R=  -5.1  p =1-2.6e-4   mildly suspicious
+  ...and 155 test result(s) without anomalies
+
+rng=RNG_stdin32, seed=0x5a7bc0b6
+length= 8 gigabytes (2^33 bytes), time= 3340 seconds
+  Test Name                         Raw       Processed     Evaluation
+  Gap-16:A                          R=  -7.8  p =1-4.1e-6   suspicious
+  Gap-16:B                          R= -13.4  p =1-2.4e-11    FAIL
+  ...and 163 test result(s) without anomalies
